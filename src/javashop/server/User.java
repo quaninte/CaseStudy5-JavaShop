@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package javashop;
+package javashop.server;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,69 +14,14 @@ import java.util.logging.Logger;
  *
  * @author quanmt
  */
-public class User extends Entity {
+public class User extends javashop.entity.User {
     
-    protected int id;
-    protected String username;
-    protected String password;
-    protected String phone;
-    protected String address;
-    protected boolean admin;
-
-    public String getAddress() {
-        return address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public boolean isAdmin() {
-        return admin;
-    }
-
-    public void setAdmin(boolean admin) {
-        this.admin = admin;
-    }
-
     public void add() {
         try {
             String addQuery = "INSERT INTO users"
                     + "(`username`, `password`, `phone`, `address`, `admin`)"
                     + "VALUES (?, ?, ?, ?, ?)";
-            PreparedStatement statement = this.connect.prepareStatement(addQuery);
+            PreparedStatement statement = Db.getConnect().prepareStatement(addQuery);
             statement.setString(1, username);
             statement.setString(2, password);
             statement.setString(3, phone);
@@ -94,7 +39,7 @@ public class User extends Entity {
             String loginQuery = "SELECT u.id, u.username, u.password, u.phone, u.address FROM users AS u"
                     + " WHERE username = ? AND password = ?";
             
-            PreparedStatement statement = this.connect.prepareStatement(loginQuery);
+            PreparedStatement statement = Db.getConnect().prepareStatement(loginQuery);
             statement.setString(1, username);
             statement.setString(2, password);
             

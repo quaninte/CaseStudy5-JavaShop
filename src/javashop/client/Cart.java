@@ -8,7 +8,7 @@
  *
  * Created on Nov 28, 2011, 1:15:55 AM
  */
-package javashop;
+package javashop.client;
 
 import java.util.Vector;
 import javax.swing.JFrame;
@@ -71,10 +71,10 @@ public class Cart extends javax.swing.JFrame {
         Order order = App.getOrder();
         
         this.clearTable();
-        Vector<OrderProduct> orderProducts = order.getOrderProducts();
+        Vector<javashop.entity.OrderProduct> orderProducts = order.getOrderProducts();
         for (int i = 0; i < orderProducts.size(); i++) {
             Vector row = new Vector();
-            OrderProduct orderProduct = orderProducts.get(i);
+            OrderProduct orderProduct = (OrderProduct) orderProducts.get(i);
             row.add(orderProduct.getProduct().getId());
             row.add(orderProduct.getProduct().getName());
             row.add(orderProduct.getQuantity());
@@ -182,7 +182,7 @@ public class Cart extends javax.swing.JFrame {
     }//GEN-LAST:event_continueButtonActionPerformed
 
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
-        Vector<OrderProduct> orderProducts = App.getOrder().getOrderProducts();
+        Vector<javashop.entity.OrderProduct> orderProducts = App.getOrder().getOrderProducts();
         
         for (int i = 0; i < this.tableModel.getRowCount(); i++) {
             int quantity = Integer.valueOf(this.orderTable.getValueAt(i, 2).toString());
@@ -195,8 +195,8 @@ public class Cart extends javax.swing.JFrame {
     private void checkoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkoutButtonActionPerformed
         if (App.getUser() == null) {
             JOptionPane.showMessageDialog(this, "You have to be logged in first");
-            UserLogin userLogin = new UserLogin();
-            userLogin.setVisible(true);
+            Users users = new Users();
+            users.setVisible(true);
             return;
         }
         App.getOrder().add();

@@ -8,7 +8,7 @@
  *
  * Created on Nov 27, 2011, 9:09:47 PM
  */
-package javashop;
+package javashop.client;
 
 import java.util.ArrayList;
 import java.util.Vector;

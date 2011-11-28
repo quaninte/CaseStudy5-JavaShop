@@ -2,18 +2,15 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package javashop;
+package javashop.entity;
 
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.Vector;
 
 /**
  *
  * @author quanmt
  */
-public class OrderProduct extends Entity {
+public class OrderProduct implements Entity {
     
     protected int id;
     protected Order order;
@@ -52,20 +49,24 @@ public class OrderProduct extends Entity {
         this.quantity = quantity;
     }
 
-    public void add() {
-        try {
-            String addQuery = "INSERT INTO order_product"
-                    + "(`order_id`, `product_id`, `quantity`)"
-                    + "VALUES (?, ?, ?)";
-            PreparedStatement statement = this.connect.prepareStatement(addQuery);
-            statement.setInt(1, order.getId());
-            statement.setInt(2, product.getId());
-            statement.setInt(3, quantity);
-            
-            statement.executeUpdate();
-        } catch (SQLException ex) {
-            Logger.getLogger(User.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    @Override
+    public Vector toVector() {
+        Vector vector = new Vector();
+        vector.add(0, id);
+        vector.add(1, order.toVector());
+        vector.add(2, product.toVector());
+        vector.add(3, quantity);
+        return vector;
+    }
+
+    @Override
+    public void readVector(Vector vector) {
+        this.id = (Integer) vector.get(0);
+        this.order = new Order();
+        this.order.readVector((Vector) vector.get(1));
+        this.product = new Product();
+        this.product.readVector((Vector) vector.get(2));
+        this.quantity = (Integer) vector.get(3);
     }
     
 }

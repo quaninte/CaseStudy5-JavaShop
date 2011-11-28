@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package javashop;
+package javashop.server;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,80 +15,24 @@ import java.util.logging.Logger;
  *
  * @author quanmt
  */
-public class Product extends Entity {
-    
-    protected int id;
-    protected Category category;
-    protected String name;
-    protected String image;
-    protected int price;
-    protected String description;
-
-    public Category getCategory() {
-        return category;
-    }
-
-    public void setCategory(Category category) {
-        this.category = category;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getPrice() {
-        return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
-    }
-    
+public class Product extends javashop.entity.Product {
     
     /**
      * Get product list by category
      * @param category
-     * @return Vector<Product>
+     * @return Vector
      */
-    public Vector<Product> getListByCategory(Category category) {
-        Vector<Product> list = new Vector<Product>();
+    public Vector getListByCategory(Category category) {
+        Vector list = new Vector();
         
         String getListQuery = "SELECT id, image, name, price, description FROM products";
-        if (category != null) {
+        if (category != null && category.getId() > 0) {
             getListQuery += " WHERE category_id = " + String.valueOf(category.getId());
         }
         
         PreparedStatement statement;
         try {
-            statement = this.connect.prepareStatement(getListQuery);
+            statement = Db.getConnect().prepareStatement(getListQuery);
             ResultSet result = statement.executeQuery();
             
             while (result.next()) {
@@ -99,7 +43,7 @@ public class Product extends Entity {
                 product.setPrice(Integer.valueOf(result.getString("price")));
                 product.setDescription(result.getString("description"));
                 
-                list.add(product);
+                list.add(product.toVector());
             }
             
         } catch (SQLException ex) {
@@ -118,7 +62,7 @@ public class Product extends Entity {
         String findByIdSql = "SELECT id, image, name, price, description FROM products WHERE id = ?";
         
         try {
-            PreparedStatement statement = this.connect.prepareStatement(findByIdSql);
+            PreparedStatement statement = Db.getConnect().prepareStatement(findByIdSql);
             statement.setInt(1, productId);
             ResultSet result = statement.executeQuery();
             if (result.next()) {

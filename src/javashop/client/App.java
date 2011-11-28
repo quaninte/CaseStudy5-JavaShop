@@ -8,8 +8,12 @@
  *
  * Created on Nov 27, 2011, 1:59:54 PM
  */
-package javashop;
+package javashop.client;
 
+import java.net.MalformedURLException;
+import java.rmi.Naming;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -22,6 +26,8 @@ public class App extends javax.swing.JFrame {
     public static User user = null;
     public static App app = null;
     public static Order order = null;
+    public static javashop.server.ShopService server;
+    
     public Users usersController = null;
     
     /** Creates new form App */
@@ -56,6 +62,23 @@ public class App extends javax.swing.JFrame {
     public static void setOrder(Order order) {
         App.order = order;
     }
+
+    public static javashop.server.ShopService getServer() {
+        if (App.server == null) {
+            try {
+                App.server = (javashop.server.ShopService) Naming.lookup("rmi://localhost:12345/ShopService");
+            } catch (NotBoundException ex) {
+                Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (MalformedURLException ex) {
+                Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (RemoteException ex) {
+                Logger.getLogger(App.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        
+        return App.server;
+    }
+    
 
     /** This method is called from within the constructor to
      * initialize the form.

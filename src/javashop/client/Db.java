@@ -1,4 +1,4 @@
-package javashop;
+package javashop.client;
 
 
 import java.sql.*;

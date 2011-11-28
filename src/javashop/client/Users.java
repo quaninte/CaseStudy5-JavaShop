@@ -8,8 +8,9 @@
  *
  * Created on Nov 27, 2011, 2:10:53 PM
  */
-package javashop;
+package javashop.client;
 
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -23,6 +24,7 @@ public class Users extends javax.swing.JFrame {
         initComponents();
         
         this.updateStatus();
+        this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
     
     public void updateStatus() {
@@ -197,7 +199,7 @@ public class Users extends javax.swing.JFrame {
     private void logoutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutButtonActionPerformed
         App.setUser(null);
         JOptionPane.showMessageDialog(this, "Logged Out");
-        this.dispose();
+        this.updateStatus();
     }//GEN-LAST:event_logoutButtonActionPerformed
 
     private void checkStatusButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkStatusButtonActionPerformed

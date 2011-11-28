@@ -4,23 +4,24 @@
  */
 
 /*
- * UserLogin.java
+ * UserRegister.java
  *
- * Created on Nov 27, 2011, 2:24:27 PM
+ * Created on Nov 27, 2011, 2:20:29 PM
  */
-package javashop;
+package javashop.client;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.WindowConstants;
 
 /**
  *
  * @author quanmt
  */
-public class UserLogin extends javax.swing.JFrame {
+public class UserRegister extends javax.swing.JFrame {
 
-    /** Creates new form UserLogin */
-    public UserLogin() {
+    /** Creates new form UserRegister */
+    public UserRegister() {
         initComponents();
         
         this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -36,22 +37,35 @@ public class UserLogin extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        usernameTextField = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        addressTextField = new javax.swing.JTextArea();
+        jLabel3 = new javax.swing.JLabel();
+        phoneTextField = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         passwordTextField = new javax.swing.JTextField();
-        loginButton = new javax.swing.JButton();
+        usernameTextField = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        registerButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Username");
+        addressTextField.setColumns(20);
+        addressTextField.setRows(5);
+        jScrollPane1.setViewportView(addressTextField);
+
+        jLabel3.setText("Address");
+
+        jLabel4.setText("Phone");
 
         jLabel2.setText("Password");
 
-        loginButton.setText("Login");
-        loginButton.addActionListener(new java.awt.event.ActionListener() {
+        jLabel1.setText("Username");
+
+        registerButton.setText("Register");
+        registerButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                loginButtonActionPerformed(evt);
+                registerButtonActionPerformed(evt);
             }
         });
 
@@ -62,20 +76,24 @@ public class UserLogin extends javax.swing.JFrame {
             .add(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING)
+                    .add(jLabel4)
+                    .add(jLabel3)
                     .add(jLabel2)
                     .add(jLabel1))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
-                    .add(loginButton)
+                    .add(registerButton)
                     .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
+                        .add(phoneTextField)
                         .add(passwordTextField)
-                        .add(usernameTextField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 156, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(38, Short.MAX_VALUE))
+                        .add(usernameTextField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 156, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabel1)
                     .add(usernameTextField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
@@ -84,8 +102,15 @@ public class UserLogin extends javax.swing.JFrame {
                     .add(jLabel2)
                     .add(passwordTextField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.UNRELATED)
-                .add(loginButton)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                    .add(jLabel4)
+                    .add(phoneTextField, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .add(12, 12, 12)
+                .add(jPanel1Layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
+                    .add(jLabel3)
+                    .add(jScrollPane1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .add(18, 18, 18)
+                .add(registerButton))
         );
 
         org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
@@ -93,34 +118,34 @@ public class UserLogin extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
-                .add(51, 51, 51)
+                .addContainerGap()
                 .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(63, Short.MAX_VALUE))
+                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
             .add(layout.createSequentialGroup()
-                .add(71, 71, 71)
+                .addContainerGap()
                 .add(jPanel1, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(80, Short.MAX_VALUE))
+                .addContainerGap(org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void loginButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginButtonActionPerformed
-        String username = this.usernameTextField.getText();
-        String password = this.passwordTextField.getText();
-        
+    private void registerButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registerButtonActionPerformed
         User user = new User();
-        if (user.login(username, password)) {
-            JOptionPane.showMessageDialog(this, "Logged in successful");
-            App.setUser(user);
-            this.dispose();
-        } else {
-            JOptionPane.showMessageDialog(this, "Wrong username or password");
-        }
-    }//GEN-LAST:event_loginButtonActionPerformed
+        user.setUsername(this.usernameTextField.getText());
+        user.setPassword(this.passwordTextField.getText());
+        user.setPhone(this.phoneTextField.getText());
+        user.setAddress(this.addressTextField.getText());
+        user.setAdmin(false);
+        user.add();
+        
+        JOptionPane.showMessageDialog(this, "User registered successful");
+        
+        this.dispose();
+    }//GEN-LAST:event_registerButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -139,30 +164,36 @@ public class UserLogin extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(UserLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UserRegister.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(UserLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UserRegister.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(UserLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UserRegister.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(UserLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(UserRegister.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
 
+            @Override
             public void run() {
-                new UserLogin().setVisible(true);
+                new UserRegister().setVisible(true);
             }
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextArea addressTextField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JButton loginButton;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField passwordTextField;
+    private javax.swing.JTextField phoneTextField;
+    private javax.swing.JButton registerButton;
     private javax.swing.JTextField usernameTextField;
     // End of variables declaration//GEN-END:variables
 }
