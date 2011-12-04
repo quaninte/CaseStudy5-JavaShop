@@ -11,12 +11,13 @@
 
 package javashop.admin;
 
+import java.io.File;
 import java.util.Vector;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JFrame;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
-import javashop.admin.Category;
+import javax.swing.JFileChooser;
 
 /**
  *
@@ -65,6 +66,7 @@ public class ProductView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        fileChooser = new javax.swing.JFileChooser();
         jScrollPane1 = new javax.swing.JScrollPane();
         productsTable = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
@@ -82,6 +84,7 @@ public class ProductView extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         deleteButton = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        choseFileButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -141,6 +144,13 @@ public class ProductView extends javax.swing.JFrame {
             }
         });
 
+        choseFileButton.setText("Chọn");
+        choseFileButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                choseFileButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -183,7 +193,10 @@ public class ProductView extends javax.swing.JFrame {
                                             .addComponent(jLabel3))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(imageProducts, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                .addComponent(imageProducts, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(choseFileButton))
                                             .addComponent(priceProducts, javax.swing.GroupLayout.DEFAULT_SIZE, 208, Short.MAX_VALUE))))))
                         .addGap(276, 276, 276)))
                 .addContainerGap())
@@ -202,7 +215,8 @@ public class ProductView extends javax.swing.JFrame {
                     .addComponent(jLabel6)
                     .addComponent(categoriesSelect, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5)
-                    .addComponent(imageProducts, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(imageProducts, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(choseFileButton))
                 .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton3)
@@ -226,8 +240,8 @@ public class ProductView extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         int selectedCategoriesIndex = this.categoriesSelect.getSelectedIndex();
-        Category categories = (Category) categoriesList.elementAt(selectedCategoriesIndex);
-        this.controller.add(this.nameProducts.getText(), this.imageProducts.getText(), Integer.valueOf(this.priceProducts.getText()), this.descriptionProducts.getText(), categories.getId());
+        Category category = (Category) categoriesList.elementAt(selectedCategoriesIndex);
+        this.controller.add(this.nameProducts.getText(), this.imageProducts.getText(), Integer.valueOf(this.priceProducts.getText()), this.descriptionProducts.getText(), category.getId());
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -262,11 +276,21 @@ public class ProductView extends javax.swing.JFrame {
         this.clearTable();
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    private void choseFileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_choseFileButtonActionPerformed
+        int returnVal = fileChooser.showOpenDialog(this);
+        
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            File file = fileChooser.getSelectedFile();
+            this.imageProducts.setText(file.toString());
+        }
+    }//GEN-LAST:event_choseFileButtonActionPerformed
+
     /**
     * @param args the command line arguments
     */
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new ProductView().setVisible(true);
             }
@@ -275,8 +299,10 @@ public class ProductView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox categoriesSelect;
+    private javax.swing.JButton choseFileButton;
     private javax.swing.JButton deleteButton;
     private javax.swing.JTextField descriptionProducts;
+    private javax.swing.JFileChooser fileChooser;
     private javax.swing.JTextField imageProducts;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;

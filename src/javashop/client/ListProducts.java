@@ -12,6 +12,7 @@ package javashop.client;
 
 import java.util.ArrayList;
 import java.util.Vector;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 
@@ -39,6 +40,8 @@ public class ListProducts extends javax.swing.JFrame {
         vColumn.addElement("price");
         vColumn.addElement("description");
         initComponents();
+        
+        this.productsTable.setPreferredScrollableViewportSize(this.getPreferredSize());
         
         category = new Category();
         product = new Product();
@@ -102,7 +105,14 @@ public class ListProducts extends javax.swing.JFrame {
             Product currentProduct = products.get(i);
             row.add(currentProduct.getId());
             row.add(currentProduct.getName());
-            row.add(currentProduct.getImage());
+            
+            if (currentProduct.getImage() != null && !currentProduct.getImage().isEmpty()) {
+                ImageIcon icon = new ImageIcon(currentProduct.getImage());
+                row.add(icon);
+            } else {
+                row.add(null);
+            }
+            
             row.add(currentProduct.getPrice());
             row.add(currentProduct.getDescription());
             this.tableModel.addRow(row);
@@ -122,7 +132,14 @@ public class ListProducts extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         categoryComboBox = new javax.swing.JComboBox();
         jScrollPane1 = new javax.swing.JScrollPane();
-        productsTable = new javax.swing.JTable();
+        productsTable = new javax.swing.JTable() {
+            //  Returning the Class of each column will allow different
+            //  renderers to be used based on Class
+            public Class getColumnClass(int column)
+            {
+                return getValueAt(0, column).getClass();
+            }
+        };
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -167,6 +184,7 @@ public class ListProducts extends javax.swing.JFrame {
         );
 
         productsTable.setModel(this.tableModel);
+        productsTable.setRowHeight(100);
         productsTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 productsTableMouseClicked(evt);
