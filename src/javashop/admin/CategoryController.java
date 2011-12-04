@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package qlsanpham;
+package javashop.admin;
 
 import java.util.Vector;
 import javax.swing.text.View;

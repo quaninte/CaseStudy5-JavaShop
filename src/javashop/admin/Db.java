@@ -1,4 +1,4 @@
-package qlsanpham;
+package javashop.admin;
 
 
 import java.sql.*;

@@ -9,7 +9,7 @@
  * Created on Nov 30, 2011, 11:12:26 PM
  */
 
-package qlsanpham;
+package javashop.admin;
 
 import javax.swing.JOptionPane;
 
@@ -23,7 +23,6 @@ public class UserLogin extends javax.swing.JFrame {
 
     /** Creates new form UserLogin */
     public UserLogin() {
-        this.menu = new Menu();
         initComponents();
     }
 
@@ -43,12 +42,13 @@ public class UserLogin extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Đăng Nhập");
 
         jLabel1.setText("Username:");
 
         jLabel2.setText("Password:");
 
-        jButton1.setText("Login");
+        jButton1.setText("Đăng Nhập");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -68,7 +68,7 @@ public class UserLogin extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(usernameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(passwordTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(103, Short.MAX_VALUE))
+                .addContainerGap(111, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(152, Short.MAX_VALUE)
                 .addComponent(jButton1)
@@ -100,6 +100,9 @@ public class UserLogin extends javax.swing.JFrame {
        User user = new User();
        if (user.login(username, password)) {
             JOptionPane.showMessageDialog(this, "Logged in successful");
+            
+            this.menu = new Menu();
+            
             this.menu.setVisible(true);
             this.dispose();
         } else {

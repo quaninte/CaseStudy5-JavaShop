@@ -3,7 +3,7 @@
  * and open the template in the editor.
  */
 
-package qlsanpham;
+package javashop.admin;
 
 import com.mysql.jdbc.PreparedStatement;
 import java.sql.ResultSet;
