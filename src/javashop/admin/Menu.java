@@ -23,9 +23,6 @@ public class Menu extends javax.swing.JFrame {
     ProductController productController;
     /** Creates new form Menu */
     public Menu() {
-        this.categoryController = new CategoryController();
-        this.reportController = new ReportController();
-        this.productController = new ProductController();
         initComponents();
         
     }
@@ -94,16 +91,19 @@ public class Menu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        this.categoryController = new CategoryController();
         this.categoryController.start();
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        this.productController = new ProductController();
         this.productController.start();
        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        this.reportController = new ReportController();
         this.reportController.setVisible(true);
        
     }//GEN-LAST:event_jButton3ActionPerformed
